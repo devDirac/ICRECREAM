@@ -1,0 +1,2247 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Documentación de API, backend",
+        "version": "0.1"
+    },
+    "paths": {
+        "/ICECREAM/public/api/register": {
+            "post": {
+                "tags": [
+                    "Autenticacion"
+                ],
+                "description": "Crea un nuevo usuario para el inicio de sesion",
+                "operationId": "8fc611e70072cfbd678bda0b1bc63337",
+                "requestBody": {
+                    "description": "El cuerpo del body debe de tener la siguiente estructura",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "example": "name"
+                                        },
+                                        "usuario": {
+                                            "type": "string",
+                                            "example": "superadmin"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "juan.perez@correo.com"
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "example": "12345"
+                                        },
+                                        "telefono": {
+                                            "type": "string",
+                                            "example": "56889878"
+                                        },
+                                        "foto": {
+                                            "type": "string",
+                                            "example": "12345"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "examples": {
+                                "result": {
+                                    "summary": "",
+                                    "value": {
+                                        "name": "name",
+                                        "usuario": "superadmin",
+                                        "email": "juan.perez@correo.com",
+                                        "password": "12345",
+                                        "telefono": "5635544556",
+                                        "foto": "base64:Asadsada"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "number",
+                                                "example": 0
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "id_empleado": "correo.persona",
+                                            "name": "name",
+                                            "usuario": "xxxx",
+                                            "email": "correo.persona@correo.com",
+                                            "updated_at": "2024-03-07T14:34:40.000000Z",
+                                            "created_at": "2024-03-07T14:34:40.000000Z",
+                                            "id": 12
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "El correo ingresado ya fue dado de alta anteriormente",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "El correo ingresado ya fue dado de alta anteriormente",
+                                            "data": {
+                                                "errorInfo": [
+                                                    "23000",
+                                                    1062,
+                                                    "Duplicate entry 'juan.perez@correo.com' for key 'users_email_unique'"
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/ICECREAM/public/api/login": {
+            "post": {
+                "tags": [
+                    "Autenticacion"
+                ],
+                "description": "Inicia sesion",
+                "operationId": "71e856b3e9f30e16e241d4276783ba1a",
+                "requestBody": {
+                    "description": "El cuerpo del body debe de tener la siguiente estructura",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "email": {
+                                            "type": "string",
+                                            "example": "moy@correo.com"
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "example": "admin123"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "examples": {
+                                "result": {
+                                    "summary": "",
+                                    "value": {
+                                        "email": "moy@correo.com",
+                                        "password": "admin123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "number",
+                                                "example": 0
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "data": {
+                                                "id": 10,
+                                                "name": "sergio",
+                                                "email": "moy@correo.com@correo.com",
+                                                "created_at": "2024-02-27T20:18:28.000000Z",
+                                                "updated_at": "2024-02-27T20:18:28.000000Z"
+                                            },
+                                            "token": "48|kt8V1hozjXc2GoD0iM1il5YO7hNezcbF19RodZsj45f110e9"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Fallo en inicio de sesion",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": "la contraseña o el correo electronico son incorrectos"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ICECREAM/public/api/getUserRefrsh/{id}": {
+            "get": {
+                "tags": [
+                    "Autenticacion"
+                ],
+                "description": "Refresca la sesion del usuario",
+                "operationId": "52135267f6aa9a5140433b769663c507",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id del usuario que inicio sesion",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": 1
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "number",
+                                                "example": 0
+                                            },
+                                            "fecha": {
+                                                "type": "string",
+                                                "example": 0
+                                            },
+                                            "titulo": {
+                                                "type": "string",
+                                                "example": "titulo"
+                                            },
+                                            "scriptSQL": {
+                                                "type": "string",
+                                                "example": "select * from chart_1;"
+                                            },
+                                            "esVertical": {
+                                                "type": "number",
+                                                "example": 1
+                                            },
+                                            "esApilado": {
+                                                "type": "number",
+                                                "example": 0
+                                            },
+                                            "rellenaEspacioEnLineal": {
+                                                "type": "number",
+                                                "example": 1
+                                            },
+                                            "tipoGrafica": {
+                                                "type": "string",
+                                                "example": "barras"
+                                            },
+                                            "size": {
+                                                "type": "string",
+                                                "example": "6"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "id": 10,
+                                            "name": "moy",
+                                            "email": "moy@correo.com",
+                                            "created_at": "2024-02-27T20:18:28.000000Z",
+                                            "updated_at": "2024-02-27T20:18:28.000000Z",
+                                            "token": "11"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario fuera de sesion",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/ICECREAM/public/api/logOut": {
+            "post": {
+                "tags": [
+                    "Autenticacion"
+                ],
+                "description": "Cerrar sesion",
+                "operationId": "6f588c08f37fe78445911d08a06fc6a0",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "number",
+                                                "example": 0
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": "Cierre de sesión exitoso."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario fuera de sesion",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/ICECREAM/public/api/recuperaContrasena": {
+            "post": {
+                "tags": [
+                    "Autenticacion"
+                ],
+                "description": "Inicia proceso para recuperar contraseña",
+                "operationId": "53edaeabd2bb20da4a6e7135b1fbae7e",
+                "requestBody": {
+                    "description": "El cuerpo del body debe de tener la siguiente estructura",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "correo": {
+                                            "type": "string",
+                                            "example": "moy@correo.com"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "examples": {
+                                "result": {
+                                    "summary": "",
+                                    "value": {
+                                        "correo": "moy@correo.com"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": "exito al enviar correo"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Correo no registrado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "Error",
+                                            "data": "Cuenta de correo no registrada"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "Parametro correo es requerido",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "El correo es requerido",
+                                            "data": {
+                                                "correo": [
+                                                    [
+                                                        "The correo field is required."
+                                                    ]
+                                                ]
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "En proceso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "erro",
+                                            "data": "Ya tienes un proceso referente a esta solicitud, verifica tu corre si no lo encuentras revisa tu carpeta de spam, aproximadamente este proceso se puede volver a realizar cada 24 hrs"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ICECREAM/public/api/recuperaContrasenaTokenValidacion": {
+            "post": {
+                "tags": [
+                    "Autenticacion"
+                ],
+                "description": "valida que el token sea valido",
+                "operationId": "fa029e8bdf0883775e35f45e63529e18",
+                "requestBody": {
+                    "description": "El cuerpo del body debe de tener la siguiente estructura",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "example": "xxxxxxxx"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "examples": {
+                                "result": {
+                                    "summary": "",
+                                    "value": {
+                                        "token": "xxxxxxxxxxxxxxxxx"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": "exito al validar el token"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "El parametro token no fue proporcionado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "El token es requerido",
+                                            "data": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Este token no es valido o ya fue utilizado",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "Este token no es valido o ya fue utilizado",
+                                            "data": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "En proceso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "erro",
+                                            "data": "Error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ICECREAM/public/api/actualizacionContrasena": {
+            "post": {
+                "tags": [
+                    "Autenticacion"
+                ],
+                "description": "Realiza la actualización del password",
+                "operationId": "5a842a5fd51ade838299303848822bcf",
+                "requestBody": {
+                    "description": "El cuerpo del body debe de tener la siguiente estructura",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string",
+                                            "example": "xxxxxxxx"
+                                        },
+                                        "contrasena": {
+                                            "type": "string",
+                                            "example": "xxxxxxxx"
+                                        },
+                                        "contrasenaConfirm": {
+                                            "type": "string",
+                                            "example": "xxxxxxxx"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "examples": {
+                                "result": {
+                                    "summary": "",
+                                    "value": {
+                                        "contrasena": "xxxx",
+                                        "contrasenaConfirm": "xxxx",
+                                        "token": "xxxxxxxxxxxxxxxxx"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": "Se ha actualizado la contraseña con exito."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "409": {
+                        "description": "El password, la confirmación del password y el token son requeridos",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "El password, la confirmación del password y el token son requeridos",
+                                            "data": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "El password, la confirmación del password no son iguales",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "El password, la confirmación del password no son iguales",
+                                            "data": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "No existe relacion del token con el usuario",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "No existe relacion del token con el usuario",
+                                            "data": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "En proceso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "erro",
+                                            "data": "Error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/ICECREAM/public/api/editUser": {
+            "put": {
+                "tags": [
+                    "Autenticacion"
+                ],
+                "description": "Realiza la actualización de un usuario",
+                "operationId": "8ab96b1e21c871582683dc9ee185c9f9",
+                "requestBody": {
+                    "description": "El cuerpo del body debe de tener la siguiente estructura",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "name": {
+                                            "type": "string",
+                                            "example": "name"
+                                        },
+                                        "usuario": {
+                                            "type": "string",
+                                            "example": "superadmin"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "example": "juan.perez@correo.com"
+                                        },
+                                        "password": {
+                                            "type": "string",
+                                            "example": "12345"
+                                        },
+                                        "telefono": {
+                                            "type": "string",
+                                            "example": "56889878"
+                                        },
+                                        "foto": {
+                                            "type": "string",
+                                            "example": "12345"
+                                        },
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "examples": {
+                                "result": {
+                                    "summary": "",
+                                    "value": {
+                                        "name": "name",
+                                        "usuario": "superadmin",
+                                        "email": "juan.perez@correo.com",
+                                        "telefono": "5635544556",
+                                        "foto": "base64:Asadsada",
+                                        "id": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": "Se ha actualizado el usuario con exito"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Este usuario no existe",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "Este usuario no existe",
+                                            "data": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "En proceso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "erro",
+                                            "data": "Error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/ICECREAM/public/api/setActiveUser": {
+            "delete": {
+                "tags": [
+                    "Autenticacion"
+                ],
+                "description": "Realiza la actualización del estatus de un usuario",
+                "operationId": "0aed616dd6b22266f30e4d43c3aaaad6",
+                "requestBody": {
+                    "description": "El cuerpo del body debe de tener la siguiente estructura",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "examples": {
+                                "result": {
+                                    "summary": "",
+                                    "value": {
+                                        "id": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": "Se ha actualizado el usuario con exito"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Este usuario no existe",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "Este usuario no existe",
+                                            "data": ""
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "En proceso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "erro",
+                                            "data": "Error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/ICECREAM/public/api/get-categorias": {
+            "get": {
+                "tags": [
+                    "Categorias productos"
+                ],
+                "description": "Obtiene todas las categorias productos",
+                "operationId": "d688e7c9969288a148065ad37fc4ffee",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "number",
+                                                "example": 1
+                                            },
+                                            "nombre": {
+                                                "type": "string",
+                                                "example": "nombre tienda"
+                                            },
+                                            "descripcion": {
+                                                "type": "string",
+                                                "example": "paletas de hielo sin leche"
+                                            },
+                                            "fecha_registro": {
+                                                "type": "string",
+                                                "example": "2024-02-29 09:27:54"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": [
+                                            {
+                                                "id": 1,
+                                                "nombre": "nombre paletas/hielo",
+                                                "descripcion": "paletas de hielo sin leche",
+                                                "fecha_registro": "2024-02-29 09:27:54"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario fuera de sesion",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/ICECREAM/public/api/creaCategoria": {
+            "post": {
+                "tags": [
+                    "Categorias productos"
+                ],
+                "description": "Guarda tiendas",
+                "operationId": "a9f31dd87918f7313aae7355c531167f",
+                "requestBody": {
+                    "description": "El cuerpo del body debe de tener la siguiente estructura",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "nombre": {
+                                            "type": "string",
+                                            "example": "nombre categoria"
+                                        },
+                                        "descripcion": {
+                                            "type": "string",
+                                            "example": "descripcion..."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "examples": {
+                                "result": {
+                                    "summary": "",
+                                    "value": {
+                                        "nombre": "nombre tienda",
+                                        "descripcion": "descripcion.."
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": "..."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "En proceso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "erro",
+                                            "data": "Error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/ICECREAM/public/api/editaCategoria": {
+            "put": {
+                "tags": [
+                    "Categorias productos"
+                ],
+                "description": "Guarda tiendas",
+                "operationId": "f3ec1a71e2c7045687bcb5b5dfd0ecf0",
+                "requestBody": {
+                    "description": "El cuerpo del body debe de tener la siguiente estructura",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "nombre": {
+                                            "type": "string",
+                                            "example": "nombre tienda"
+                                        },
+                                        "descripcion": {
+                                            "type": "string",
+                                            "example": "descripcion..."
+                                        },
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "examples": {
+                                "result": {
+                                    "summary": "",
+                                    "value": {
+                                        "nombre": "nombre tienda",
+                                        "descripcion": "calle tal, numero tal",
+                                        "id": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": "..."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "En proceso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "erro",
+                                            "data": "Error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/ICECREAM/public/api/get-all-productos": {
+            "get": {
+                "tags": [
+                    "Productos"
+                ],
+                "description": "Obtiene todas los Productos",
+                "operationId": "867cb10669d26975365f08ee5f697aa6",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "number",
+                                                "example": 1
+                                            },
+                                            "nombre": {
+                                                "type": "string",
+                                                "example": "nombre paletas/hielo"
+                                            },
+                                            "descripcion": {
+                                                "type": "string",
+                                                "example": "paletas de hielo sin leche"
+                                            },
+                                            "precio": {
+                                                "type": "number",
+                                                "example": 12.15
+                                            },
+                                            "cantidad": {
+                                                "type": "number",
+                                                "example": 100
+                                            },
+                                            "vendidos": {
+                                                "type": "number",
+                                                "example": 3
+                                            },
+                                            "id_tienda": {
+                                                "type": "number",
+                                                "example": 1
+                                            },
+                                            "id_categoria": {
+                                                "type": "number",
+                                                "example": 1
+                                            },
+                                            "id_usuario_venta": {
+                                                "type": "number",
+                                                "example": 1
+                                            },
+                                            "id_usuario_creacion": {
+                                                "type": "number",
+                                                "example": 1
+                                            },
+                                            "fecha_venta": {
+                                                "type": "number",
+                                                "example": 1
+                                            },
+                                            "tienda": {
+                                                "type": "string",
+                                                "example": "general"
+                                            },
+                                            "ubicacion_tienda": {
+                                                "type": "string",
+                                                "example": "xxxxx"
+                                            },
+                                            "latitud_tienda": {
+                                                "type": "string",
+                                                "example": "9.2344"
+                                            },
+                                            "longitud_tienda": {
+                                                "type": "string",
+                                                "example": "-9.2344"
+                                            },
+                                            "categoria": {
+                                                "type": "string",
+                                                "example": "paletas / hielo"
+                                            },
+                                            "descripcion_categoria": {
+                                                "type": "string",
+                                                "example": "xxxxx"
+                                            },
+                                            "fecha_registro": {
+                                                "type": "string",
+                                                "example": "2024-02-29 09:27:54"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": [
+                                            {
+                                                "id": 1,
+                                                "nombre": "nombre paletas/hielo",
+                                                "descripcion": "paletas de hielo sin leche",
+                                                "precio": 15,
+                                                "cantidad": 100,
+                                                "vendidos": 2,
+                                                "id_tienda": 1,
+                                                "id_categoria": 1,
+                                                "id_usuario_venta": 1,
+                                                "id_usuario_creacion": 1,
+                                                "fecha_venta": null,
+                                                "fecha_registro": "2024-02-29 09:27:54",
+                                                "tienda": "general",
+                                                "ubicacion_tienda": "xxxxx",
+                                                "latitud_tienda": "9.2344",
+                                                "longitud_tienda": "9.2344",
+                                                "categoria": "paletas / hielo",
+                                                "descripcion_categoria": "xxxxx"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario fuera de sesion",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/ICECREAM/public/api/get-all-productos-fecha": {
+            "post": {
+                "tags": [
+                    "Productos"
+                ],
+                "description": "Obtiene todas los Productos",
+                "operationId": "e64d8afa6e90e307aedb7d50f0b682bb",
+                "requestBody": {
+                    "description": "El cuerpo del body debe de tener la siguiente estructura",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "fechaInicio": {
+                                            "type": "string",
+                                            "example": "2024-02-29"
+                                        },
+                                        "fechaFin": {
+                                            "type": "string",
+                                            "example": "2024-02-29"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "examples": {
+                                "result": {
+                                    "summary": "",
+                                    "value": {
+                                        "fechaInicio": "2024-02-29",
+                                        "fechaFin": "2024-02-29"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "number",
+                                                "example": 1
+                                            },
+                                            "nombre": {
+                                                "type": "string",
+                                                "example": "nombre paletas/hielo"
+                                            },
+                                            "descripcion": {
+                                                "type": "string",
+                                                "example": "paletas de hielo sin leche"
+                                            },
+                                            "precio": {
+                                                "type": "number",
+                                                "example": 12.15
+                                            },
+                                            "cantidad": {
+                                                "type": "number",
+                                                "example": 100
+                                            },
+                                            "vendidos": {
+                                                "type": "number",
+                                                "example": 3
+                                            },
+                                            "id_tienda": {
+                                                "type": "number",
+                                                "example": 1
+                                            },
+                                            "id_categoria": {
+                                                "type": "number",
+                                                "example": 1
+                                            },
+                                            "id_usuario_venta": {
+                                                "type": "number",
+                                                "example": 1
+                                            },
+                                            "id_usuario_creacion": {
+                                                "type": "number",
+                                                "example": 1
+                                            },
+                                            "fecha_venta": {
+                                                "type": "number",
+                                                "example": 1
+                                            },
+                                            "tienda": {
+                                                "type": "string",
+                                                "example": "general"
+                                            },
+                                            "ubicacion_tienda": {
+                                                "type": "string",
+                                                "example": "xxxxx"
+                                            },
+                                            "latitud_tienda": {
+                                                "type": "string",
+                                                "example": "9.2344"
+                                            },
+                                            "longitud_tienda": {
+                                                "type": "string",
+                                                "example": "-9.2344"
+                                            },
+                                            "categoria": {
+                                                "type": "string",
+                                                "example": "paletas / hielo"
+                                            },
+                                            "descripcion_categoria": {
+                                                "type": "string",
+                                                "example": "xxxxx"
+                                            },
+                                            "fecha_registro": {
+                                                "type": "string",
+                                                "example": "2024-02-29 09:27:54"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": [
+                                            {
+                                                "id": 1,
+                                                "nombre": "nombre paletas/hielo",
+                                                "descripcion": "paletas de hielo sin leche",
+                                                "precio": 15,
+                                                "cantidad": 100,
+                                                "vendidos": 2,
+                                                "id_tienda": 1,
+                                                "id_categoria": 1,
+                                                "id_usuario_venta": 1,
+                                                "id_usuario_creacion": 1,
+                                                "fecha_venta": null,
+                                                "fecha_registro": "2024-02-29 09:27:54",
+                                                "tienda": "general",
+                                                "ubicacion_tienda": "xxxxx",
+                                                "latitud_tienda": "9.2344",
+                                                "longitud_tienda": "9.2344",
+                                                "categoria": "paletas / hielo",
+                                                "descripcion_categoria": "xxxxx"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario fuera de sesion",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/ICECREAM/public/api/creaProducto": {
+            "post": {
+                "tags": [
+                    "Productos"
+                ],
+                "description": "Guarda tiendas",
+                "operationId": "c6b6df2c42585806f3c1a9008cf22297",
+                "requestBody": {
+                    "description": "El cuerpo del body debe de tener la siguiente estructura",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "nombre": {
+                                            "type": "string",
+                                            "example": "nombre"
+                                        },
+                                        "descripcion": {
+                                            "type": "string",
+                                            "example": "descripcion..."
+                                        },
+                                        "precio": {
+                                            "type": "number",
+                                            "example": 15
+                                        },
+                                        "cantidad": {
+                                            "type": "number",
+                                            "example": 100
+                                        },
+                                        "vendidos": {
+                                            "type": "number",
+                                            "example": 0
+                                        },
+                                        "id_tienda": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "id_categoria": {
+                                            "type": "number",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "examples": {
+                                "result": {
+                                    "summary": "",
+                                    "value": {
+                                        "nombre": "nombre",
+                                        "descripcion": "descripcion",
+                                        "precio": 10,
+                                        "cantidad": 100,
+                                        "vendidos": 0,
+                                        "id_tienda": 1,
+                                        "id_categoria": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": "..."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "En proceso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "erro",
+                                            "data": "Error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/ICECREAM/public/api/editaProducto": {
+            "put": {
+                "tags": [
+                    "Productos"
+                ],
+                "description": "Guarda tiendas",
+                "operationId": "461b948c9f003507b25581792da79dee",
+                "requestBody": {
+                    "description": "El cuerpo del body debe de tener la siguiente estructura",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "nombre": {
+                                            "type": "string",
+                                            "example": "nombre"
+                                        },
+                                        "descripcion": {
+                                            "type": "string",
+                                            "example": "descripcion..."
+                                        },
+                                        "precio": {
+                                            "type": "number",
+                                            "example": 15
+                                        },
+                                        "cantidad": {
+                                            "type": "number",
+                                            "example": 100
+                                        },
+                                        "vendidos": {
+                                            "type": "number",
+                                            "example": 0
+                                        },
+                                        "id_tienda": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "id_categoria": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "examples": {
+                                "result": {
+                                    "summary": "",
+                                    "value": {
+                                        "nombre": "nombre",
+                                        "descripcion": "descripcion",
+                                        "precio": 10,
+                                        "cantidad": 100,
+                                        "vendidos": 0,
+                                        "id_tienda": 1,
+                                        "id_categoria": 1,
+                                        "id": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": "..."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "En proceso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "erro",
+                                            "data": "Error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/ICECREAM/public/api/vendeProducto": {
+            "put": {
+                "tags": [
+                    "Productos"
+                ],
+                "description": "Guarda tiendas",
+                "operationId": "05dd0a49444d2c97fc1474617570019a",
+                "requestBody": {
+                    "description": "El cuerpo del body debe de tener la siguiente estructura",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "cantidad_ventas": {
+                                            "type": "number",
+                                            "example": 1
+                                        },
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "examples": {
+                                "result": {
+                                    "summary": "",
+                                    "value": {
+                                        "id": 1,
+                                        "cantidad_ventas": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": "..."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "En proceso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "erro",
+                                            "data": "Error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/ICECREAM/public/api/get-tiendas": {
+            "get": {
+                "tags": [
+                    "Tiendas"
+                ],
+                "description": "Obtiene todas las tiendas",
+                "operationId": "5e4723ca905dd1fb9270aa908ad01e19",
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "properties": {
+                                            "id": {
+                                                "type": "number",
+                                                "example": 1
+                                            },
+                                            "nombre": {
+                                                "type": "string",
+                                                "example": "nombre tienda"
+                                            },
+                                            "ubicacion_direccion": {
+                                                "type": "string",
+                                                "example": "calle tal"
+                                            },
+                                            "lat": {
+                                                "type": "string",
+                                                "example": "9.5644"
+                                            },
+                                            "lon": {
+                                                "type": "string",
+                                                "example": ".9231231"
+                                            },
+                                            "fecha_registro": {
+                                                "type": "string",
+                                                "example": "2024-02-29 09:27:54"
+                                            }
+                                        },
+                                        "type": "object"
+                                    }
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": [
+                                            {
+                                                "id": 1,
+                                                "nombre": "nombre tienda",
+                                                "ubicacion_direccion": "calle tal",
+                                                "lat": "9.231321",
+                                                "lon": "-9.56456",
+                                                "fecha_registro": "2024-02-29 09:27:54"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Usuario fuera de sesion",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "object"
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "message": "Unauthenticated."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/ICECREAM/public/api/creaTienda": {
+            "post": {
+                "tags": [
+                    "Tiendas"
+                ],
+                "description": "Guarda tiendas",
+                "operationId": "ec3b4aa54a19f7ed2ae59c6cd4d5df6b",
+                "requestBody": {
+                    "description": "El cuerpo del body debe de tener la siguiente estructura",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "nombre": {
+                                            "type": "string",
+                                            "example": "nombre tienda"
+                                        },
+                                        "ubicacion_direccion": {
+                                            "type": "string",
+                                            "example": "ubicacion_direccion..."
+                                        },
+                                        "lat": {
+                                            "type": "string",
+                                            "example": "9.54654"
+                                        },
+                                        "lon": {
+                                            "type": "string",
+                                            "example": "-9.54654"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "examples": {
+                                "result": {
+                                    "summary": "",
+                                    "value": {
+                                        "nombre": "nombre tienda",
+                                        "ubicacion_direccion": "calle tal, numero tal",
+                                        "lat": "9.112121",
+                                        "lon": "-9.12313"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": "..."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "En proceso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "erro",
+                                            "data": "Error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        },
+        "/ICECREAM/public/api/editaTienda": {
+            "put": {
+                "tags": [
+                    "Tiendas"
+                ],
+                "description": "Guarda tiendas",
+                "operationId": "738b03a8601848e0aee90d0a16221528",
+                "requestBody": {
+                    "description": "El cuerpo del body debe de tener la siguiente estructura",
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "properties": {
+                                        "nombre": {
+                                            "type": "string",
+                                            "example": "nombre tienda"
+                                        },
+                                        "ubicacion_direccion": {
+                                            "type": "string",
+                                            "example": "ubicacion_direccion..."
+                                        },
+                                        "lat": {
+                                            "type": "string",
+                                            "example": "9.54654"
+                                        },
+                                        "lon": {
+                                            "type": "string",
+                                            "example": "-9.54654"
+                                        },
+                                        "id": {
+                                            "type": "number",
+                                            "example": 1
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            },
+                            "examples": {
+                                "result": {
+                                    "summary": "",
+                                    "value": {
+                                        "nombre": "nombre tienda",
+                                        "ubicacion_direccion": "calle tal, numero tal",
+                                        "lat": "9.112121",
+                                        "lon": "-9.12313",
+                                        "id": 1
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Operación exitosa",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": "..."
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "En proceso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {}
+                                },
+                                "examples": {
+                                    "result": {
+                                        "summary": "",
+                                        "value": {
+                                            "success": false,
+                                            "message": "erro",
+                                            "data": "Error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearer_token": []
+                    }
+                ]
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Autenticacion",
+            "description": "Controlador para administrar lo relacionado con el manejo de sesiones"
+        },
+        {
+            "name": "Categorias productos",
+            "description": "Controla todo lo relacionado con las categorias de los productos"
+        },
+        {
+            "name": "Productos",
+            "description": "Controla todo lo con los productos"
+        },
+        {
+            "name": "Tiendas",
+            "description": "Controla todo lo relacionado con las tiendas"
+        }
+    ],
+    "components": {
+        "securitySchemes": {
+            "bearer_token": {
+                "type": "apiKey",
+                "description": "Enter token in format (Bearer <token>)",
+                "name": "Authorization",
+                "in": "header"
+            }
+        }
+    }
+}
